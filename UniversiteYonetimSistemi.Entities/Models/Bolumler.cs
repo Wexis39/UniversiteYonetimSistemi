@@ -9,5 +9,10 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class Bolumler:BaseEntity
     {
+        public int BolumID {  get; set; }
+        
+        public string BolumAdi { get; set; }
+        
+        public int FakulteID { get; set; }
     }
 }

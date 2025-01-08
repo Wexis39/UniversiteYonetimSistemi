@@ -9,5 +9,9 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class Fakulteler:BaseEntity
     {
+        public int FakulteID { get; set; }
+
+        public string FakulteID { get; set; }
+      
     }
 }

@@ -9,5 +9,10 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class DersAtamalari:BaseEntity
     {
+        public int AtamaID {  get; set; }
+
+        public int DersID { get; set; }
+
+        public int OgretimGorevlisiID { get; set; }
     }
 }

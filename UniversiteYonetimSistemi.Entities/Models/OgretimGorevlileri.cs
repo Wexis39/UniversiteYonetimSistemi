@@ -9,5 +9,17 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class OgretimGorevlileri:BaseEntity
     {
+        public int OgretimGorevlisiID { get; set; }
+
+        public string Ad { get; set; }  
+        
+        public string Soyad { get; set; }
+
+        public string Eposta { get; set; }  
+
+        public string Telefon { get; set; } 
+
+        public int BolumID { get; set; }
+
     }
 }

@@ -9,5 +9,13 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class OgrenciDersKayitlari:BaseEntity
     {
+        public int KayitID { get; set; }
+
+        public int OgrenciID { get; set; }
+
+        public int DersID { get; set; }
+
+        public decimal Not { get; set; }
+
     }
 }

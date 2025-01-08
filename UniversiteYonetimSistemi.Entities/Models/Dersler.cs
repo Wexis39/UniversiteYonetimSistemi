@@ -9,5 +9,12 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class Dersler:BaseEntity
     {
+        public int DersID {  get; set; }
+
+        public string DersAdi { get; set; }
+
+        public int Kredi { get; set; }
+
+        public int BolumID { get; set; }
     }
 }
