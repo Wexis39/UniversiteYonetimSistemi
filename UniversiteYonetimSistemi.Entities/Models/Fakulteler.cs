@@ -12,6 +12,6 @@ namespace UniversiteYonetimSistemi.Entities.Models
         public int FakulteID { get; set; }
 
         public string FakulteID { get; set; }
-      
+
     }
 }

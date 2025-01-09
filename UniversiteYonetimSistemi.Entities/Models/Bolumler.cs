@@ -14,5 +14,6 @@ namespace UniversiteYonetimSistemi.Entities.Models
         public string BolumAdi { get; set; }
         
         public int FakulteID { get; set; }
+        public ICollection<Dersler> Dersler { get; set; }
     }
 }
