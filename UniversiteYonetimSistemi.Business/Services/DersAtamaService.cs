@@ -4,55 +4,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class DersAtamaService
-    {
-        private readonly DersAtamaRepository _dersAtamaRepository;
-
-        public DersAtamalariService(DersAtamaRepository dersAtamaRepository)
+        public class DersAtamaService : IService<DersAtama>
         {
-            _dersAtamaRepository = dersAtamaRepository;
-        }
+            private readonly DersAtamaRepository _dersAtamaRepository;
 
-        public IEnumerable<DersAtama> GetAllDersAtamalari()
-        {
-            return _dersAtamaRepository.GetAll();
-        }
-
-        public DersAtama GetDersAtamalariById(int id)
-        {
-            return _dersAtamaRepository.GetByID(id);
-        }
-
-        public void AddDersAtamasi(DersAtama dersAtama)
-        {
-            var validator = new DersAtamaValidator();
-            var result = validator.Validate(dersAtama);
-
-            if (!result.IsValid)
+            public DersAtamaService(DersAtamaRepository dersAtamaRepository)
             {
-                throw new ValidationException(result.Errors);
+                _dersAtamaRepository = dersAtamaRepository;
             }
 
-            _dersAtamaRepository.Add(dersAtama);
-        }
+            public void Add(DersAtama entity)
+            {
+                _dersAtamaRepository.Add(entity);
+            }
 
-        public void UpdateDersAtamasi(DersAtama dersAtama)
-        {
-            _dersAtamaRepository.Update(dersAtama);
-        }
+            public void Update(DersAtama entity)
+            {
+                _dersAtamaRepository.Update(entity);
+            }
 
-        public void DeleteDersAtamasi(int id)
-        {
-            _dersAtamaRepository.Delete(id);
-        }
+            public void Delete(Guid id)
+            {
+                _dersAtamaRepository.Delete(id);
+            }
 
-        public bool IfEntityExists(int dersId, int ogretimGorevlisiId)
-        {
-            return _dersAtamaRepository.IfEntityExists(a => a.DersID == dersId && a.OgretimGorevlisiID == ogretimGorevlisiId);
+            public DersAtama GetById(Guid id)
+            {
+                return _dersAtamaRepository.GetByID(id);
+            }
+
+            public IEnumerable<DersAtama> GetAll()
+            {
+                return _dersAtamaRepository.GetAll();
+            }
+
+            public bool IfEntityExists(Expression<Func<DersAtama, bool>> filter)
+            {
+                return _dersAtamaRepository.IfEntityExists(filter);
+            }
         }
-    }
 }

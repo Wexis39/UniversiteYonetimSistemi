@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversiteYonetimSistemi.Business.Abstractions;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class OgrenciDersKayitService
+    public class OgrenciDersKayitService : IService<OgrenciDersKayit>
     {
         private readonly OgrenciDersKayitRepository _ogrenciDersKayitRepository;
 
@@ -17,42 +19,34 @@ namespace UniversiteYonetimSistemi.Business.Services
             _ogrenciDersKayitRepository = ogrenciDersKayitRepository;
         }
 
-        public IEnumerable<OgrenciDersKayit> GetAllKayitlar()
+        public void Add(OgrenciDersKayit entity)
         {
-            return _ogrenciDersKayitRepository.GetAll();
+            _ogrenciDersKayitRepository.Add(entity);
         }
 
-        public OgrenciDersKayit GetKayitById(int id)
+        public void Update(OgrenciDersKayit entity)
         {
-            return _ogrenciDersKayitRepository.GetByID(id);
+            _ogrenciDersKayitRepository.Update(entity);
         }
 
-        public void AddKayit(OgrenciDersKayit kayit)
-        {
-            var validator = new OgrenciDersKayitValidator();
-            var result = validator.Validate(kayit);
-
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
-
-            _ogrenciDersKayitRepository.Add(kayit);
-        }
-
-        public void UpdateKayit(OgrenciDersKayit kayit)
-        {
-            _ogrenciDersKayitRepository.Update(kayit);
-        }
-
-        public void DeleteKayit(int id)
+        public void Delete(Guid id)
         {
             _ogrenciDersKayitRepository.Delete(id);
         }
 
-        public bool IfEntityExists(int ogrenciId, int dersId)
+        public OgrenciDersKayit GetById(Guid id)
         {
-            return _ogrenciDersKayitRepository.IfEntityExists(k => k.OgrenciID == ogrenciId && k.DersID == dersId);
+            return _ogrenciDersKayitRepository.GetByID(id);
+        }
+
+        public IEnumerable<OgrenciDersKayit> GetAll()
+        {
+            return _ogrenciDersKayitRepository.GetAll();
+        }
+
+        public bool IfEntityExists(Expression<Func<OgrenciDersKayit, bool>> filter)
+        {
+            return _ogrenciDersKayitRepository.IfEntityExists(filter);
         }
     }
 }

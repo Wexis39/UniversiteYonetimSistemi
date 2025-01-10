@@ -12,67 +12,54 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class BolumService
+    public class BolumService:IService<Bolum>
     {
-        private readonly BolumRepository _bolumRepository;
-
-        public BolumService(BolumRepository bolumRepository)
+        public class BolumService : IService<Bolumler>
         {
-            _bolumRepository = bolumRepository;
-        }
+            private readonly BolumRepository _bolumRepository;
 
-        public IEnumerable<Bolumler> GetAllBolumler()
-        {
-            return _bolumRepository.GetAll();
-        }
-
-        public Bolumler GetBolumById(int id)
-        {
-            return _bolumRepository.GetByID(id);
-        }
-
-        public void AddBolum(Bolumler bolum)
-        {
-            var validator = new BolumValidator();
-            var result = validator.Validate(bolum);
-
-            if (!result.IsValid)
+            public BolumService(BolumRepository bolumRepository)
             {
-                throw new ValidationException(result.Errors);
-
+                _bolumRepository = bolumRepository;
             }
 
-            _bolumRepository.Add(bolum);
-        }
-
-        public void UpdateBolum(Bolumler bolum)
-        {
-            _bolumRepository.Update(bolum);
-        }
-
-        public void DeleteBolum(int id)
-        {
-            _bolumRepository.Delete(id);
-        }
-
-        // Aynı isimde bolum var mı?
-        public bool IfEntityExists(string bolumAdi)
-        {
-            return _bolumRepository.IfEntityExists(b => b.BolumAdi == bolumAdi);
-        }
-
-        public void Add(Bolum entity)
-        {
-            var validator = new BolumValidator();
-            var result = validator.Validate(bolum);
-
-            if (!result.IsValid)
+            public void Add(Bolumler entity)
             {
-                throw new ValidationException(result.Errors);
+                var validator = new BolumValidator();
+                var result = validator.Validate(entity);
 
+                if (!result.IsValid)
+                {
+                    throw new ValidationException(result.Errors);
+                }
+
+                _bolumRepository.Add(entity);
             }
 
-            _bolumRepository.Add(bolum);
+            public void Update(Bolumler entity)
+            {
+                _bolumRepository.Update(entity);
+            }
+
+            public void Delete(Guid id)
+            {
+                _bolumRepository.Delete(id);
+            }
+
+            public Bolumler GetById(Guid id)
+            {
+                return _bolumRepository.GetByID(id);
+            }
+
+            public IEnumerable<Bolumler> GetAll()
+            {
+                return _bolumRepository.GetAll();
+            }
+
+            public bool IfEntityExists(Expression<Func<Bolumler, bool>> filter)
+            {
+                return _bolumRepository.IfEntityExists(filter);
+            }
         }
 
     }
