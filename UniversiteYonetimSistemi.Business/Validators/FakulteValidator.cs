@@ -8,7 +8,7 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Validators
 {
-    public class FakulteValidator:AbstractValidator<Fakulteler>
+    public class FakulteValidator:AbstractValidator<Fakulte>
     {
         public FakulteValidator()
         {

@@ -17,17 +17,17 @@ namespace UniversiteYonetimSistemi.Business.Services
             _dersAtamaRepository = dersAtamaRepository;
         }
 
-        public IEnumerable<DersAtamalari> GetAllDersAtamalari()
+        public IEnumerable<DersAtama> GetAllDersAtamalari()
         {
             return _dersAtamaRepository.GetAll();
         }
 
-        public DersAtamalari GetDersAtamalariById(int id)
+        public DersAtama GetDersAtamalariById(int id)
         {
             return _dersAtamaRepository.GetByID(id);
         }
 
-        public void AddDersAtamasi(DersAtamalari dersAtama)
+        public void AddDersAtamasi(DersAtama dersAtama)
         {
             var validator = new DersAtamaValidator();
             var result = validator.Validate(dersAtama);
@@ -40,7 +40,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             _dersAtamaRepository.Add(dersAtama);
         }
 
-        public void UpdateDersAtamasi(DersAtamalari dersAtama)
+        public void UpdateDersAtamasi(DersAtama dersAtama)
         {
             _dersAtamaRepository.Update(dersAtama);
         }

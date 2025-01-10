@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using UniversiteYonetimSistemi.Business.Abstractions;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
@@ -35,6 +39,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             if (!result.IsValid)
             {
                 throw new ValidationException(result.Errors);
+
             }
 
             _bolumRepository.Add(bolum);
@@ -55,5 +60,20 @@ namespace UniversiteYonetimSistemi.Business.Services
         {
             return _bolumRepository.IfEntityExists(b => b.BolumAdi == bolumAdi);
         }
+
+        public void Add(Bolum entity)
+        {
+            var validator = new BolumValidator();
+            var result = validator.Validate(bolum);
+
+            if (!result.IsValid)
+            {
+                throw new ValidationException(result.Errors);
+
+            }
+
+            _bolumRepository.Add(bolum);
+        }
+
     }
 }

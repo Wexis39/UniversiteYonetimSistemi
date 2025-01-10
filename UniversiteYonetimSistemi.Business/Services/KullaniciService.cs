@@ -17,17 +17,17 @@ namespace UniversiteYonetimSistemi.Business.Services
             _kullanicilarRepository = kullaniciRepository;
         }
 
-        public IEnumerable<Kullanicilar> GetAllKullanicilar()
+        public IEnumerable<Kullanici> GetAllKullanicilar()
         {
             return _kullaniciRepository.GetAll();
         }
 
-        public Kullanicilar GetKullaniciById(int id)
+        public Kullanici GetKullaniciById(int id)
         {
             return _kullaniciRepository.GetByID(id);
         }
 
-        public void AddKullanici(Kullanicilar kullanici)
+        public void AddKullanici(Kullanici kullanici)
         {
             var validator = new KullaniciValidator();
             var result = validator.Validate(kullanici);
@@ -39,7 +39,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             _kullaniciRepository.Add(kullanici);
         }
 
-        public void UpdateKullanici(Kullanicilar kullanici)
+        public void UpdateKullanici(Kullanici kullanici)
         {
             _kullaniciRepository.Update(kullanici);
         }

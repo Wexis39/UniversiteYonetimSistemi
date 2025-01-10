@@ -17,17 +17,17 @@ namespace UniversiteYonetimSistemi.Business.Services
             _fakulteRepository = fakulteRepository;
         }
 
-        public IEnumerable<Fakulteler> GetAllFakulteler()
+        public IEnumerable<Entities.Models.Fakulte> GetAllFakulteler()
         {
             return _fakulteRepository.GetAll();
         }
 
-        public Fakulteler GetFakulteById(int id)
+        public Entities.Models.Fakulte GetFakulteById(int id)
         {
             return _fakulteRepository.GetByID(id);
         }
 
-        public void AddFakulte(Fakulteler fakulte)
+        public void AddFakulte(Entities.Models.Fakulte fakulte)
         {
             var validator = new FakulteValidator();
             var result = validator.Validate(fakulte);
@@ -39,7 +39,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             _fakulteRepository.Add(fakulte);
         }
 
-        public void UpdateFakulte(Fakulteler fakulte)
+        public void UpdateFakulte(Entities.Models.Fakulte fakulte)
         {
             _fakulteRepository.Update(fakulte);
         }

@@ -8,7 +8,7 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Validators
 {
-    public class DersAtamaValidator:AbstractValidator<DersAtamalari>
+    public class DersAtamaValidator:AbstractValidator<DersAtama>
     {
         public DersAtamaValidator()
         {

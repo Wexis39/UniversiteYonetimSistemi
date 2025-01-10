@@ -10,7 +10,7 @@ namespace UniversiteYonetimSistemi.Business.Services
 {
     public class DersService
     {
-        public class DersService
+        public class DersService:IServiceProvider
         {
             private readonly DerslerRepository _derslerRepository;
 
@@ -21,19 +21,19 @@ namespace UniversiteYonetimSistemi.Business.Services
             }
 
             // Tüm Dersler verilerini döndür
-            public IEnumerable<Dersler> GetAllDers()
+            public IEnumerable<Ders> GetAllDers()
             {
                 return _derslerRepository.GetAll();
             }
 
             // ID'ye göre tek bir Ders kaydını getir
-            public Dersler GetDersById(int id)
+            public Ders GetDersById(int id)
             {
                 return _derslerRepository.GetByID(id);
             }
 
             // Yeni bir Ders ekle
-            public void AddDers(Dersler ders)
+            public void AddDers(Ders ders)
             {
                 // 1) FluentValidation ile doğrulama
                 var validator = new DerslerValidator();
@@ -50,7 +50,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             }
 
             // Var olan bir Ders kaydını güncelle
-            public void UpdateDers(Dersler ders)
+            public void UpdateDers(Ders ders)
             {
                 // İstersen burada da validator çalıştırabilirsin
                 _dersRepository.Update(ders);
@@ -69,4 +69,5 @@ namespace UniversiteYonetimSistemi.Business.Services
                 return _dersRepository.IfEntityExists(d => d.DersAdi == dersAdi);
             }
         }
+    }
 }

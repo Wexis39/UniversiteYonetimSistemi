@@ -7,11 +7,9 @@ using UniversiteYonetimSistemi.Entities.Abstractions;
 
 namespace UniversiteYonetimSistemi.Entities.Models
 {
-    public class Fakulteler:BaseEntity
+    public class Ders:BaseEntity
     {
-        public int FakulteID { get; set; }
-
-        public string FakulteID { get; set; }
-
+        public string DersAdi { get; set; }
+        public int Kredi { get; set; }
     }
 }

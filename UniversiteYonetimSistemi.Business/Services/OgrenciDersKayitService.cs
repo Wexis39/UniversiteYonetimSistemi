@@ -17,17 +17,17 @@ namespace UniversiteYonetimSistemi.Business.Services
             _ogrenciDersKayitRepository = ogrenciDersKayitRepository;
         }
 
-        public IEnumerable<OgrenciDersKayitlari> GetAllKayitlar()
+        public IEnumerable<OgrenciDersKayit> GetAllKayitlar()
         {
             return _ogrenciDersKayitRepository.GetAll();
         }
 
-        public OgrenciDersKayitlari GetKayitById(int id)
+        public OgrenciDersKayit GetKayitById(int id)
         {
             return _ogrenciDersKayitRepository.GetByID(id);
         }
 
-        public void AddKayit(OgrenciDersKayitlari kayit)
+        public void AddKayit(OgrenciDersKayit kayit)
         {
             var validator = new OgrenciDersKayitValidator();
             var result = validator.Validate(kayit);
@@ -40,7 +40,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             _ogrenciDersKayitRepository.Add(kayit);
         }
 
-        public void UpdateKayit(OgrenciDersKayitlari kayit)
+        public void UpdateKayit(OgrenciDersKayit kayit)
         {
             _ogrenciDersKayitRepository.Update(kayit);
         }

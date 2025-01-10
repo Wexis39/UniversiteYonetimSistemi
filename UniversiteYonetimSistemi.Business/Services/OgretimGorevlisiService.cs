@@ -17,17 +17,17 @@ namespace UniversiteYonetimSistemi.Business.Services
             _ogretimGorevlisiRepository = ogretimGorevlisiRepository;
         }
 
-        public IEnumerable<OgretimGorevlileri> GetAllOgretimGorevlisi()
+        public IEnumerable<OgretimGorevlisi> GetAllOgretimGorevlisi()
         {
             return _ogretimGorevlisiRepository.GetAll();
         }
 
-        public OgretimGorevlileri GetOgretimGorevlisiById(int id)
+        public OgretimGorevlisi GetOgretimGorevlisiById(int id)
         {
             return _ogretimGorevlisiRepository.GetByID(id);
         }
 
-        public void AddOgretimGorevlisi(OgretimGorevlileri ogretimGorevlisi)
+        public void AddOgretimGorevlisi(OgretimGorevlisi ogretimGorevlisi)
         {
             var validator = new OgretimGorevlisiValidator();
             var result = validator.Validate(ogretimGorevlisi);
@@ -40,7 +40,7 @@ namespace UniversiteYonetimSistemi.Business.Services
             _ogretimGorevlisiRepository.Add(ogretimGorevlisi);
         }
 
-        public void UpdateOgretimGorevlisi(OgretimGorevlileri ogretimGorevlisi)
+        public void UpdateOgretimGorevlisi(OgretimGorevlisi ogretimGorevlisi)
         {
             _ogretimGorevlisiRepository.Update(ogretimGorevlisi);
         }

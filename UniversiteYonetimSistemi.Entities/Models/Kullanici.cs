@@ -7,14 +7,10 @@ using UniversiteYonetimSistemi.Entities.Abstractions;
 
 namespace UniversiteYonetimSistemi.Entities.Models
 {
-    public class Dersler:BaseEntity
+    public class Kullanici:BaseEntity
     {
-        public int DersID {  get; set; }
-
-        public string DersAdi { get; set; }
-
-        public int Kredi { get; set; }
-
-        public int BolumID { get; set; }
+        public string KullaniciAdi { get; set; }
+        public string Sifre { get; set; }
+        public string Rol { get; set; }
     }
 }

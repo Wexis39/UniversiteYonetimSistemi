@@ -8,7 +8,7 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Validators
 {
-    public class OgrenciDersKayitValidator:AbstractValidator<OgrenciDersKayitlari>
+    public class OgrenciDersKayitValidator:AbstractValidator<OgrenciDersKayit>
     {
         public OgrenciDersKayitValidator()
         {

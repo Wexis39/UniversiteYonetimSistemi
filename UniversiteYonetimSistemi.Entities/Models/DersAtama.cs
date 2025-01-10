@@ -7,15 +7,7 @@ using UniversiteYonetimSistemi.Entities.Abstractions;
 
 namespace UniversiteYonetimSistemi.Entities.Models
 {
-    public class Kullanicilar:BaseEntity
+    public class DersAtama:BaseEntity
     {
-        public int KullaniciID { get; set; }
-
-        public string KullaniciAdi { get; set; }
-
-        public string Sifre { get; set; }
-
-        public string Rol { get; set; }
-
     }
 }

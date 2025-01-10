@@ -8,7 +8,7 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Validators
 {
-    public class KullaniciValidator:AbstractValidator<Kullanicilar>
+    public class KullaniciValidator:AbstractValidator<Kullanici>
     {
         public KullaniciValidator()
         {

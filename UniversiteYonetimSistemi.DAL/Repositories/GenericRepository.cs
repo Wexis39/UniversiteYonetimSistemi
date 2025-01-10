@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using UniversiteYonetimSistemi.DAL.Abstractions;
@@ -45,6 +46,11 @@ namespace UniversiteYonetimSistemi.DAL.Repositories
                 throw new Exception("Bulunamadi");
             }
             return found;
+        }
+
+        public bool IfEntityExists(Expression<Func<T, bool>> filter)
+        {
+            return _dbSet.Any(filter);
         }
 
         public void Update(T entity)

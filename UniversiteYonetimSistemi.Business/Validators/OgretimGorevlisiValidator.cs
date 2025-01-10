@@ -8,7 +8,7 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Validators
 {
-    public class OgretimGorevlisiValidator:AbstractValidator<OgretimGorevlileri>
+    public class OgretimGorevlisiValidator:AbstractValidator<OgretimGorevlisi>
     {
         public OgretimGorevlisiValidator()
         {
