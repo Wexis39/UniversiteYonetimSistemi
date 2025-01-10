@@ -6,55 +6,48 @@ using System.Text;
 using System.Threading.Tasks;
 using UniversiteYonetimSistemi.Business.Abstractions;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class KullaniciService
+    public class KullaniciService: IService<Kullanici>
     {
         private readonly KullaniciRepository _kullaniciRepository;
 
         public KullaniciService(KullaniciRepository kullaniciRepository)
         {
-            _kullanicilarRepository = kullaniciRepository;
+            _kullaniciRepository = kullaniciRepository;
         }
 
-        public IEnumerable<Kullanici> GetAllKullanicilar()
+        public void Add(Kullanici entity)
         {
-            return _kullaniciRepository.GetAll();
+            _kullaniciRepository.Add(entity);
         }
 
-        public Kullanici GetKullaniciById(int id)
+        public void Update(Kullanici entity)
         {
-            return _kullaniciRepository.GetByID(id);
+            _kullaniciRepository.Update(entity);
         }
 
-        public void AddKullanici(Kullanici kullanici)
-        {
-            var validator = new KullaniciValidator();
-            var result = validator.Validate(kullanici);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
-
-            _kullaniciRepository.Add(kullanici);
-        }
-
-        public void UpdateKullanici(Kullanici kullanici)
-        {
-            _kullaniciRepository.Update(kullanici);
-        }
-
-        public void DeleteKullanici(int id)
+        public void Delete(Guid id)
         {
             _kullaniciRepository.Delete(id);
         }
 
-        // Örneğin kullanıcı adı var mı?
-        public bool IfEntityExists(string kullaniciAdi)
+        public Kullanici GetById(Guid id)
         {
-            return _kullaniciRepository.IfEntityExists(u => u.KullaniciAdi == kullaniciAdi);
+            return _kullaniciRepository.GetByID(id);
+        }
+
+        public IEnumerable<Kullanici> GetAll()
+        {
+            return _kullaniciRepository.GetAll();
+        }
+
+        public bool IfEntityExists(Expression<Func<Kullanici, bool>> filter)
+        {
+            return _kullaniciRepository.IfEntityExists(filter);
         }
     }
 }

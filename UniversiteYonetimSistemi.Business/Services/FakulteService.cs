@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversiteYonetimSistemi.Business.Abstractions;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class Fakulte
+    public class Fakulte: IService<Fakulte>
     {
         private readonly FakulteRepository _fakulteRepository;
 
@@ -17,42 +19,34 @@ namespace UniversiteYonetimSistemi.Business.Services
             _fakulteRepository = fakulteRepository;
         }
 
-        public IEnumerable<Entities.Models.Fakulte> GetAllFakulteler()
+        public void Add(Fakulte entity)
         {
-            return _fakulteRepository.GetAll();
+            _fakulteRepository.Add(entity);
         }
 
-        public Entities.Models.Fakulte GetFakulteById(int id)
+        public void Update(Fakulte entity)
         {
-            return _fakulteRepository.GetByID(id);
+            _fakulteRepository.Update(entity);
         }
 
-        public void AddFakulte(Entities.Models.Fakulte fakulte)
-        {
-            var validator = new FakulteValidator();
-            var result = validator.Validate(fakulte);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
-
-            _fakulteRepository.Add(fakulte);
-        }
-
-        public void UpdateFakulte(Entities.Models.Fakulte fakulte)
-        {
-            _fakulteRepository.Update(fakulte);
-        }
-
-        public void DeleteFakulte(int id)
+        public void Delete(Guid id)
         {
             _fakulteRepository.Delete(id);
         }
 
-        // Aynı Fakülte adına sahip kayıt var mı?
-        public bool IfEntityExists(string fakulteAdi)
+        public Fakulte GetById(Guid id)
         {
-            return _fakulteRepository.IfEntityExists(f => f.FakulteAdi == fakulteAdi);
+            return _fakulteRepository.GetByID(id);
+        }
+
+        public IEnumerable<Fakulte> GetAll()
+        {
+            return _fakulteRepository.GetAll();
+        }
+
+        public bool IfEntityExists(Expression<Func<Fakulte, bool>> filter)
+        {
+            return _fakulteRepository.IfEntityExists(filter);
         }
     }
 }
