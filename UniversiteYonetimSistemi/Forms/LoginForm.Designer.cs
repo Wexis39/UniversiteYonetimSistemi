@@ -242,7 +242,7 @@
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(371, 55);
             btnLogin.TabIndex = 0;
-            btnLogin.Text = "Gririş Yap";
+            btnLogin.Text = "Giriş Yap";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
