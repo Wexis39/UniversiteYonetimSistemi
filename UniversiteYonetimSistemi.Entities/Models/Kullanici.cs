@@ -7,15 +7,15 @@ using UniversiteYonetimSistemi.Entities.Abstractions;
 
 namespace UniversiteYonetimSistemi.Entities.Models
 {
-    public class OgrenciDersKayitlari:BaseEntity
+    public class Kullanici:BaseEntity
     {
-        public int KayitID { get; set; }
+        public Guid KullaniciID { get; set; } = Guid.NewGuid();
 
-        public int OgrenciID { get; set; }
+        public string KullaniciAdi { get; set; }
 
-        public int DersID { get; set; }
+        public string Sifre { get; set; }
 
-        public decimal Not { get; set; }
+        public string Rol { get; set; }
 
     }
 }

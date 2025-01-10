@@ -7,12 +7,14 @@ using UniversiteYonetimSistemi.Entities.Abstractions;
 
 namespace UniversiteYonetimSistemi.Entities.Models
 {
-    public class Bolumler:BaseEntity
+    public class Bolum:BaseEntity
     {
-        public int BolumID {  get; set; }
-        
-        public string BolumAdi { get; set; }
+        public Guid BolumID {  get; set; } = Guid.NewGuid();
+
+        public string BolumAdi { get; set; } 
         
         public int FakulteID { get; set; }
+
+        public ICollection <Ders> Ders { get; set; }
     }
 }

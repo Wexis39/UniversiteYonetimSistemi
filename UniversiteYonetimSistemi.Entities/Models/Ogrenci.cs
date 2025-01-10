@@ -7,9 +7,9 @@ using UniversiteYonetimSistemi.Entities.Abstractions;
 
 namespace UniversiteYonetimSistemi.Entities.Models
 {
-    public class Ogrenciler:BaseEntity
+    public class Ogrenci:BaseEntity
     {
-        public int OgrenciID { get; set; }
+        public Guid OgrenciID { get; set; } = Guid.NewGuid(); 
 
         public string OgrenciAdi { get; set; }
 
