@@ -3,66 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversiteYonetimSistemi.Business.Abstractions;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class OgrenciService
-    {
-        private readonly OgrenciRepository _ogrenciRepository;
-
-        public OgrenciService(OgrenciRepository ogrenciRepository)
+        public class OgrenciService: IService<Ogrenci>
         {
-            _ogrenciRepository = ogrenciRepository;
-        }
+            private readonly OgrenciRepository _ogrenciRepository;
 
-        // Tüm öğrencileri getir
-        public IEnumerable<Ogrenci> GetAllOgrenciler()
-        {
-            return _ogrenciRepository.GetAll();
-        }
-
-        // Id ile tek öğrenci getir
-        public Ogrenci GetOgrenciById(int id)
-        {
-            return _ogrenciRepository.GetByID(id);
-        }
-
-        // Yeni öğrenci ekle
-        public void AddOgrenci(Ogrenci ogrenci)
-        {
-            // Validasyon
-            var validator = new OgrenciValidator();
-            ValidationResult result = validator.Validate(ogrenci);
-
-            if (!result.IsValid)
+            public OgrenciService(OgrenciRepository ogrenciRepository)
             {
-                throw new ValidationException(result.Errors);
+                _ogrenciRepository = ogrenciRepository;
             }
 
-            _ogrenciRepository.Add(ogrenci);
-        }
+            public void Add(Ogrenci entity)
+            {
+                _ogrenciRepository.Add(entity);
+            }
 
-        // Öğrenci güncelle
-        public void UpdateOgrenci(Ogrenci ogrenci)
-        {
-            // Dilersen validasyon tekrar yapabilirsin
-            _ogrenciRepository.Update(ogrenci);
-        }
+            public void Update(Ogrenci entity)
+            {
+                _ogrenciRepository.Update(entity);
+            }
 
-        // Öğrenci sil
-        public void DeleteOgrenci(int id)
-        {
-            _ogrenciRepository.Delete(id);
-        }
+            public void Delete(Guid id)
+            {
+                _ogrenciRepository.Delete(id);
+            }
 
-        // Belirli bir koşulla öğrenci var mı?
-        // Örneğin TCNo veya Eposta bazlı kontrol
-        public bool IfEntityExists(string tcNo)
-        {
-            return _ogrenciRepository.IfEntityExists(o => o.TCNo == tcNo);
-        }
+            public Ogrenci GetById(Guid id)
+            {
+                return _ogrenciRepository.GetByID(id);
+            }
 
-    }
+            public IEnumerable<Ogrenci> GetAll()
+            {
+                return _ogrenciRepository.GetAll();
+            }
+
+            public bool IfEntityExists(Expression<Func<Ogrenci, bool>> filter)
+            {
+                return _ogrenciRepository.IfEntityExists(filter);
+            }
+
+        }
 }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversiteYonetimSistemi.Business.Abstractions;
 using UniversiteYonetimSistemi.Business.Validators;
+using UniversiteYonetimSistemi.DAL.Repositories;
 using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class OgretimGorevlisiService
+    public class OgretimGorevlisiService:IService<OgretimGorevlisi>
     {
         private readonly OgretimGorevlisiRepository _ogretimGorevlisiRepository;
 
@@ -17,43 +19,34 @@ namespace UniversiteYonetimSistemi.Business.Services
             _ogretimGorevlisiRepository = ogretimGorevlisiRepository;
         }
 
-        public IEnumerable<OgretimGorevlisi> GetAllOgretimGorevlisi()
+        public void Add(OgretimGorevlisi entity)
         {
-            return _ogretimGorevlisiRepository.GetAll();
+            _ogretimGorevlisiRepository.Add(entity);
         }
 
-        public OgretimGorevlisi GetOgretimGorevlisiById(int id)
+        public void Update(OgretimGorevlisi entity)
         {
-            return _ogretimGorevlisiRepository.GetByID(id);
+            _ogretimGorevlisiRepository.Update(entity);
         }
 
-        public void AddOgretimGorevlisi(OgretimGorevlisi ogretimGorevlisi)
-        {
-            var validator = new OgretimGorevlisiValidator();
-            var result = validator.Validate(ogretimGorevlisi);
-
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
-
-            _ogretimGorevlisiRepository.Add(ogretimGorevlisi);
-        }
-
-        public void UpdateOgretimGorevlisi(OgretimGorevlisi ogretimGorevlisi)
-        {
-            _ogretimGorevlisiRepository.Update(ogretimGorevlisi);
-        }
-
-        public void DeleteOgretimGorevlisi(int id)
+        public void Delete(Guid id)
         {
             _ogretimGorevlisiRepository.Delete(id);
         }
 
-        // Belirli bir adı-soyadı olan öğretim görevlisi var mı?
-        public bool IfEntityExists(string ad, string soyad)
+        public OgretimGorevlisi GetById(Guid id)
         {
-            return _ogretimGorevlisiRepository.IfEntityExists(g => g.Ad == ad && g.Soyad == soyad);
+            return _ogretimGorevlisiRepository.GetByID(id);
+        }
+
+        public IEnumerable<OgretimGorevlisi> GetAll()
+        {
+            return _ogretimGorevlisiRepository.GetAll();
+        }
+
+        public bool IfEntityExists(Expression<Func<OgretimGorevlisi, bool>> filter)
+        {
+            return _ogretimGorevlisiRepository.IfEntityExists(filter);
         }
     }
 }
