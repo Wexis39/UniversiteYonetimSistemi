@@ -9,6 +9,7 @@ namespace UniversiteYonetimSistemi.Entities.Models
 {
     public class Ogrenci:BaseEntity
     {
+        public Guid OgrenciID { get; set; } = Guid.NewGuid(); 
         public string Ad { get; set; }
 
         public string Soyad { get; set; }
@@ -23,5 +24,10 @@ namespace UniversiteYonetimSistemi.Entities.Models
 
         public string Adres { get; set; }
 
+        public Bolum Bolum { get; set; }
+
+        public ICollection<OgrenciDersKayit> OgrenciDersKayitlari { get; set; };
+
+        public Kullanici Kullanici { get; set; }
     }
 }

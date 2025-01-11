@@ -10,5 +10,17 @@ namespace UniversiteYonetimSistemi.Entities.Models
     public class OgrenciDersKayit:BaseEntity
     {
         public float Not { get; set; }
+        public Guid KayitID { get; set; } = Guid.NewGuid();
+
+        public int OgrenciID { get; set; }
+
+        public int DersID { get; set; }
+
+        public decimal Not { get; set; }
+
+        public Ders Ders { get; set; }
+
+        public Ogrenci Ogrenci { get; set; }    
+
     }
 }
