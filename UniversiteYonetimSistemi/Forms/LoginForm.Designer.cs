@@ -62,6 +62,7 @@
             btnOgrenci.TabIndex = 0;
             btnOgrenci.Text = "Öğrenci";
             btnOgrenci.UseVisualStyleBackColor = false;
+            btnOgrenci.Click += btnOgrenci_Click;
             // 
             // btnOgretmen
             // 
@@ -75,6 +76,7 @@
             btnOgretmen.TabIndex = 0;
             btnOgretmen.Text = "Öğretmen";
             btnOgretmen.UseVisualStyleBackColor = false;
+            btnOgretmen.Click += btnOgretmen_Click;
             // 
             // btnAdmin
             // 
@@ -88,6 +90,7 @@
             btnAdmin.TabIndex = 0;
             btnAdmin.Text = "İdari İşler";
             btnAdmin.UseVisualStyleBackColor = false;
+            btnAdmin.Click += btnAdmin_Click;
             // 
             // label1
             // 
@@ -127,7 +130,7 @@
             // 
             // btnMinimize
             // 
-            btnMinimize.BackColor = Color.FromArgb(146, 165, 246);
+            btnMinimize.BackColor = Color.LightBlue;
             btnMinimize.FlatStyle = FlatStyle.Flat;
             btnMinimize.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMinimize.Location = new Point(430, -4);
@@ -140,7 +143,7 @@
             // 
             // btnExit
             // 
-            btnExit.BackColor = Color.FromArgb(146, 165, 246);
+            btnExit.BackColor = Color.LightBlue;
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExit.Location = new Point(468, 0);
@@ -261,6 +264,7 @@
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
+            Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlTop.ResumeLayout(false);
             panel1.ResumeLayout(false);
