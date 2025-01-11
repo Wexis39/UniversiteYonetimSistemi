@@ -21,7 +21,28 @@ namespace UniversiteYonetimSistemi.DAL.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False;Initial Catalog=UniversiteDB");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OgrenciDersKayit>()
+                .HasOne(odk => odk.Ogrenci)
+                .WithMany(o => o.OgrenciDersKayitlari)
+                .HasForeignKey(odk => odk.OgrenciID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<OgrenciDersKayit>()
+                .HasOne(odk => odk.Ders)
+                .WithMany(d => d.OgrenciDersKayitlari)
+                .HasForeignKey(odk => odk.DersID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<DersAtama>()
+                .HasOne(d => d.OgretimGorevlisi)
+                .WithMany()
+                .HasForeignKey(d => d.OgretimGorevlisiID)
+                .OnDelete(DeleteBehavior.NoAction);
+        }
+
     }
 }

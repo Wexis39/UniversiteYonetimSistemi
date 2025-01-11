@@ -8,15 +8,10 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Validators
 {
-    public class DerslerValidator : AbstractValidator<Ders>
+    public class DersValidator : AbstractValidator<Ders>
     {
-        public DerslerValidator()
+        public DersValidator()
         {
-            // DersID sıfırdan büyük olmalı
-            RuleFor(d => d.DersID)
-                .GreaterThan(0)
-                .WithMessage("Ders ID sıfırdan büyük olmalıdır.");
-
             // DersAdi boş olamaz, uzunluk sınırı 3-100 karakter
             RuleFor(d => d.DersAdi)
                 .NotEmpty()
@@ -28,11 +23,6 @@ namespace UniversiteYonetimSistemi.Business.Validators
             RuleFor(d => d.Kredi)
                 .InclusiveBetween(1, 10)
                 .WithMessage("Kredi değeri 1 ile 10 arasında olmalıdır.");
-
-            // BolumID sıfırdan büyük olmalı
-            RuleFor(d => d.BolumID)
-                .GreaterThan(0)
-                .WithMessage("Bölüm ID sıfırdan büyük olmalıdır.");
         }
     }
 }

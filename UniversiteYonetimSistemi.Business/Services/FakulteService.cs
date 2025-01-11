@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using UniversiteYonetimSistemi.Business.Abstractions;
@@ -10,7 +12,7 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class Fakulte: IService<Fakulte>
+    public class FakulteService: IService<Fakulte>
     {
         private readonly FakulteRepository _fakulteRepository;
 
@@ -21,11 +23,26 @@ namespace UniversiteYonetimSistemi.Business.Services
 
         public void Add(Fakulte entity)
         {
+            FakulteValidator validator = new FakulteValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
             _fakulteRepository.Add(entity);
         }
 
         public void Update(Fakulte entity)
         {
+            FakulteValidator validator = new FakulteValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
+
             _fakulteRepository.Update(entity);
         }
 
@@ -36,7 +53,7 @@ namespace UniversiteYonetimSistemi.Business.Services
 
         public Fakulte GetById(Guid id)
         {
-            return _fakulteRepository.GetByID(id);
+            return _fakulteRepository.GetById(id);
         }
 
         public IEnumerable<Fakulte> GetAll()

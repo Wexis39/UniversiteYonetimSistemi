@@ -12,10 +12,6 @@ namespace UniversiteYonetimSistemi.Business.Validators
     {
         public FakulteValidator()
         {
-            RuleFor(x => x.FakulteID)
-                .GreaterThan(0)
-                .WithMessage("Fakülte ID sıfırdan büyük olmalıdır.");
-
             RuleFor(x => x.FakulteAdi)
                 .NotEmpty()
                 .WithMessage("Fakülte adı boş olamaz.")

@@ -12,17 +12,13 @@ namespace UniversiteYonetimSistemi.Business.Validators
     {
         public OgrenciValidator()
         {
-            RuleFor(x => x.OgrenciID)
-                .GreaterThan(0)
-                .WithMessage("Öğrenci ID sıfırdan büyük olmalıdır.");
-
-            RuleFor(x => x.OgrenciAdi)
+            RuleFor(x => x.Ad)
                 .NotEmpty()
                 .WithMessage("Öğrenci adı boş olamaz.")
                 .Length(2, 50)
                 .WithMessage("Öğrenci adı en az 2, en fazla 50 karakter olmalıdır.");
 
-            RuleFor(x => x.OgrenciSoyAdi)
+            RuleFor(x => x.Soyad)
                 .NotEmpty()
                 .WithMessage("Öğrenci soyadı boş olamaz.")
                 .Length(2, 50)
@@ -57,10 +53,6 @@ namespace UniversiteYonetimSistemi.Business.Validators
                 .WithMessage("Adres boş olamaz.")
                 .Length(5, 200)
                 .WithMessage("Adres en az 5, en fazla 200 karakter olmalıdır.");
-
-            RuleFor(x => x.BolumID)
-                .GreaterThan(0)
-                .WithMessage("Bölüm ID sıfırdan büyük olmalıdır.");
         }
     }
 }

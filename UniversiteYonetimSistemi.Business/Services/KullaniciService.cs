@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,11 +23,26 @@ namespace UniversiteYonetimSistemi.Business.Services
 
         public void Add(Kullanici entity)
         {
+            KullaniciValidator validator = new KullaniciValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
             _kullaniciRepository.Add(entity);
         }
 
         public void Update(Kullanici entity)
         {
+            KullaniciValidator validator = new KullaniciValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
+
             _kullaniciRepository.Update(entity);
         }
 
@@ -37,7 +53,7 @@ namespace UniversiteYonetimSistemi.Business.Services
 
         public Kullanici GetById(Guid id)
         {
-            return _kullaniciRepository.GetByID(id);
+            return _kullaniciRepository.GetById(id);
         }
 
         public IEnumerable<Kullanici> GetAll()

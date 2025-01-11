@@ -114,7 +114,7 @@
             // 
             // pnlTop
             // 
-            pnlTop.BackColor = Color.LightBlue;
+            pnlTop.BackColor = Color.Teal;
             pnlTop.Controls.Add(btnMinimize);
             pnlTop.Controls.Add(btnExit);
             pnlTop.Location = new Point(0, 0);
@@ -153,7 +153,7 @@
             // 
             // txtUsername
             // 
-            txtUsername.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtUsername.Location = new Point(32, 324);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(436, 39);
@@ -190,7 +190,7 @@
             // 
             // txtPassword
             // 
-            txtPassword.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtPassword.Location = new Point(12, 359);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(365, 39);

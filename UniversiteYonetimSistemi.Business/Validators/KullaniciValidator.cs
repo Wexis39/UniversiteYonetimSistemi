@@ -12,10 +12,6 @@ namespace UniversiteYonetimSistemi.Business.Validators
     {
         public KullaniciValidator()
         {
-            RuleFor(x => x.KullaniciID)
-                .GreaterThan(0)
-                .WithMessage("Kullanıcı ID sıfırdan büyük olmalıdır.");
-
             RuleFor(x => x.KullaniciAdi)
                 .NotEmpty()
                 .WithMessage("Kullanıcı adı boş olamaz.")

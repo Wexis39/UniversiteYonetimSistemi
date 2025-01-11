@@ -12,11 +12,6 @@ namespace UniversiteYonetimSistemi.Business.Validators
     {
         public OgretimGorevlisiValidator()
         {
-            // OgretimGorevlisiID validasyonu
-            RuleFor(x => x.OgretimGorevlisiID)
-                .GreaterThan(0)
-                .WithMessage("Öğretim Görevlisi ID sıfırdan büyük olmalıdır.");
-
             // Ad validasyonu
             RuleFor(x => x.Ad)
                 .NotEmpty()
@@ -44,11 +39,6 @@ namespace UniversiteYonetimSistemi.Business.Validators
                 .WithMessage("Telefon numarası boş olamaz.")
                 .Matches(@"^\d{10}$")
                 .WithMessage("Telefon numarası tam 10 rakamdan oluşmalıdır.");
-
-            // BolumID validasyonu
-            RuleFor(x => x.BolumID)
-                .GreaterThan(0)
-                .WithMessage("Bölüm ID sıfırdan büyük olmalıdır.");
         }
     }
 }

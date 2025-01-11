@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using UniversiteYonetimSistemi.Business.Abstractions;
@@ -21,11 +23,26 @@ namespace UniversiteYonetimSistemi.Business.Services
 
         public void Add(OgretimGorevlisi entity)
         {
+            OgretimGorevlisiValidator validator = new OgretimGorevlisiValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
             _ogretimGorevlisiRepository.Add(entity);
         }
 
         public void Update(OgretimGorevlisi entity)
         {
+            OgretimGorevlisiValidator validator = new OgretimGorevlisiValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
+
             _ogretimGorevlisiRepository.Update(entity);
         }
 
@@ -36,7 +53,7 @@ namespace UniversiteYonetimSistemi.Business.Services
 
         public OgretimGorevlisi GetById(Guid id)
         {
-            return _ogretimGorevlisiRepository.GetByID(id);
+            return _ogretimGorevlisiRepository.GetById(id);
         }
 
         public IEnumerable<OgretimGorevlisi> GetAll()

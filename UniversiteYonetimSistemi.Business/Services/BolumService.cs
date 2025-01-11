@@ -12,55 +12,59 @@ using UniversiteYonetimSistemi.Entities.Models;
 
 namespace UniversiteYonetimSistemi.Business.Services
 {
-    public class BolumService:IService<Bolum>
+    public class BolumService : IService<Bolum>
     {
-        public class BolumService : IService<Bolumler>
+        private readonly BolumRepository _bolumRepository;
+
+        public BolumService(BolumRepository bolumRepository)
         {
-            private readonly BolumRepository _bolumRepository;
-
-            public BolumService(BolumRepository bolumRepository)
-            {
-                _bolumRepository = bolumRepository;
-            }
-
-            public void Add(Bolumler entity)
-            {
-                var validator = new BolumValidator();
-                var result = validator.Validate(entity);
-
-                if (!result.IsValid)
-                {
-                    throw new ValidationException(result.Errors);
-                }
-
-                _bolumRepository.Add(entity);
-            }
-
-            public void Update(Bolumler entity)
-            {
-                _bolumRepository.Update(entity);
-            }
-
-            public void Delete(Guid id)
-            {
-                _bolumRepository.Delete(id);
-            }
-
-            public Bolumler GetById(Guid id)
-            {
-                return _bolumRepository.GetByID(id);
-            }
-
-            public IEnumerable<Bolumler> GetAll()
-            {
-                return _bolumRepository.GetAll();
-            }
-
-            public bool IfEntityExists(Expression<Func<Bolumler, bool>> filter)
-            {
-                return _bolumRepository.IfEntityExists(filter);
-            }
+            _bolumRepository = bolumRepository;
         }
 
+        public void Add(Bolum entity)
+        {
+            BolumValidator validator = new BolumValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
+
+            _bolumRepository.Add(entity);
+        }
+
+        public void Update(Bolum entity)
+        {
+            BolumValidator validator = new BolumValidator();
+            var result = validator.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                result.Errors.ForEach(x => throw new Exception(x.ErrorMessage));
+            }
+
+            _bolumRepository.Update(entity);
+        }
+
+        public void Delete(Guid id)
+        {
+            _bolumRepository.Delete(id);
+        }
+
+        public Bolum GetById(Guid id)
+        {
+            return _bolumRepository.GetById(id);
+        }
+
+        public IEnumerable<Bolum> GetAll()
+        {
+            return _bolumRepository.GetAll();
+        }
+
+        public bool IfEntityExists(Expression<Func<Bolum, bool>> filter)
+        {
+            return _bolumRepository.IfEntityExists(filter);
+        }
     }
 }
