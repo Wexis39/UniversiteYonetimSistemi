@@ -107,11 +107,11 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.FromArgb(223, 226, 233);
-            pictureBox1.BackgroundImage = Properties.Resources.profile;
+            pictureBox1.BackgroundImage = Properties.Resources.MESlogo;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(170, 3);
+            pictureBox1.Location = new Point(165, 8);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(120, 120);
+            pictureBox1.Size = new Size(130, 130);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
@@ -179,13 +179,13 @@
             panel1.BackColor = Color.FromArgb(223, 226, 233);
             panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(txtHide);
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnAdmin);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(btnOgretmen);
             panel1.Controls.Add(btnOgrenci);
             panel1.Controls.Add(btnLogin);
+            panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(20, 50);
             panel1.Name = "panel1";
             panel1.Size = new Size(460, 508);

@@ -82,7 +82,19 @@ namespace UniversiteYonetimSistemi.UI.Forms
                     }
                     else
                     {
-                        MessageBox.Show("Gecerli");
+                        if (kullaniciRolu == "Admin")
+                        {
+                            AdminForm adminForm = new AdminForm(foundUser.KullaniciAdi.ToString());
+                            this.Hide();
+                            adminForm.Show();
+                        }
+                        else if(kullaniciRolu == "Ogretmen")
+                        {
+
+                        }
+                        else if (kullaniciRolu == "Ogrenci")
+                        {
+                        }
                     }
                 }
             }
@@ -105,7 +117,6 @@ namespace UniversiteYonetimSistemi.UI.Forms
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             kullaniciRolu = "Admin";
-            kullaniciRolu = "Ogretmen";
             btnOgrenci.BackColor = Color.FromArgb(52, 158, 232);
             btnAdmin.BackColor = Color.MidnightBlue;
             btnOgretmen.BackColor = Color.FromArgb(52, 158, 232);
